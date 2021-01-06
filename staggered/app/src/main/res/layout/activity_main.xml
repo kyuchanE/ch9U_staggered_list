@@ -11,7 +11,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginVertical="50dp">
+
+            <!-- start : pinterest view -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_staggered"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"/>
+            <!-- end : pinterest view -->
 
         </LinearLayout>
 
