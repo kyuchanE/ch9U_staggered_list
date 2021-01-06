@@ -1,6 +1,7 @@
 package com.chan9u.staggered.base
 
 import android.app.Application
+import com.chan9u.staggered.utils.API
 import com.facebook.stetho.Stetho
 import com.orhanobut.hawk.Hawk
 
@@ -25,5 +26,8 @@ class BaseApplication: Application() {
 
         // Stetho
         Stetho.initializeWithDefaults(this)
+
+        // 통신모듈
+        API.init(this)
     }
 }

@@ -3,14 +3,22 @@ package com.chan9u.staggered.utils
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.orhanobut.hawk.Hawk
 import com.chan9u.staggered.base.BaseActivity
+import com.chan9u.staggered.custom.glide.GlideApp
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import java.util.*
 
 
 /*------------------------------------------------------------------------------
@@ -52,6 +60,10 @@ fun <T : ViewDataBinding> LayoutInflater.bind(layoutId: Int, parent: ViewGroup? 
 }
 fun <T : ViewDataBinding> Activity.bindView(layoutId: Int, parent: ViewGroup? = null, attachToRoot: Boolean = false): T {
     return DataBindingUtil.inflate(layoutInflater, layoutId, parent, attachToRoot)
+}
+
+fun <T : ViewDataBinding> ViewGroup.bind(layoutId: Int, attachToParent: Boolean = false): T {
+    return DataBindingUtil.inflate(layoutInflater, layoutId, this, attachToParent)
 }
 
 fun ViewDataBinding.setOnEvents(activity: BaseActivity<*>? = null) = root.setOnEvents(activity)
@@ -136,3 +148,55 @@ fun <T> hawk(key: String): T = Hawk.get(key)
 fun <T> hawk(key: String, default: T): T = Hawk.get(key, default)
 fun <T> flash(key: String): T = Hawk.get<T>(key).also { Hawk.delete(key) }
 fun <T> flash(key: String, default: T): T = Hawk.get(key, default).also { Hawk.delete(key) }
+
+
+////////////////////////////// ImageView //////////////////////////////
+fun ImageView.load(url: String): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+fun ImageView.loadRound(url: String, round: Int): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .transform(CenterCrop(), RoundedCorners(round.dp2px))
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+fun ImageView.loadRoundTop(url: String, round: Int): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .transform(CenterCrop(), RoundedCornersTransformation(round.dp2px, 0, RoundedCornersTransformation.CornerType.TOP))
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+fun ImageView.loadCircle(url: String): ImageView {
+    if (url.isNotEmpty()) {
+        GlideApp.with(context)
+            .load(url)
+            .apply(RequestOptions().circleCrop())
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+    return this
+}
+
+////////////////////////////// Int //////////////////////////////
+val Int.digit get() = if (this < 10) "0${toString()}" else toString()
+val Int.px2dp get() = (this / Resources.getSystem().displayMetrics.density).toInt()
+val Int.dp2px get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+val Int.boolean get() = this > 0
+val Int.count get() = String.format(Locale.KOREA, "%,d", this)

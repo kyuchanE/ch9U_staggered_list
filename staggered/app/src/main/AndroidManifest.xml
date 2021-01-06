@@ -4,6 +4,8 @@
     package="com.chan9u.staggered"
     tools:ignore="ImpliedTouchscreenHardware,MissingLeanbackLauncher,MissingLeanbackSupport">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
