@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jaychang:simpletext:2.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b81ebfd01c23032b7eec4127604c9d87/jetified-simpletext-2.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b81ebfd01c23032b7eec4127604c9d87/jetified-simpletext-2.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b81ebfd01c23032b7eec4127604c9d87/jetified-simpletext-2.0.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jaychang/simpletext/2.0.1/1c3188f41cae6403b9da1735b3dce289cecb72fd/simpletext-2.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jaychang/simpletext/2.0.1/4cc9382e27af549cb6de7fd90b91e25e9bf2ed23/simpletext-2.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
